@@ -8,6 +8,9 @@ public class CrudFullstackAngularApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CrudFullstackAngularApplication.class, args);
+
+
+		
 	}
 
 }
