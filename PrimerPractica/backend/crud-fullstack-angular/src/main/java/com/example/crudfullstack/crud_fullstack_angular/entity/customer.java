@@ -8,23 +8,21 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class customer {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
-
     @Column(nullable = false, unique = true)
     private String email;
 
 
-    public customer () {
+    public Customer () {
     
     }
 
-    public customer(Integer id, String name, String email) {
+    public Customer(Integer id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
