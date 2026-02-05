@@ -7,6 +7,14 @@ import { EjemploComponent } from './ejemplo/ejemplo.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { CustomerAddComponent } from './components/customer-add/customer-add.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+
+  const routes : Routes = [
+    {path : '', component : CustomerListComponent}, //http:localhost:4200/
+    {path : 'customers/add', component : CustomerAddComponent}, //http:localhost:4200/customers/add
+    {path : 'customers/delete/:id', component : CustomerListComponent} //http:localhost:4200/customers/delete/1
+  ];
 
 @NgModule({
   declarations: [
@@ -18,9 +26,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
-  bootstrap: [CustomerAddComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
