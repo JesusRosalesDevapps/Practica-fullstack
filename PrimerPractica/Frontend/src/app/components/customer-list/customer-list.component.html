@@ -1,0 +1,18 @@
+<h2>Listado de customer</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombres</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = " let c of customers ">
+      <th scope="row">{{ c.id }}</th>
+      <td>{{ c.name }}</td>
+      <td>{{ c.email }}</td>
+    </tr>
+  </tbody>
+</table>
