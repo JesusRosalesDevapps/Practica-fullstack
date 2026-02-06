@@ -25,4 +25,20 @@
         </tr>
     </tbody>
     </table>
+
+    <div class="pagination-controls">
+    <button (click)="cambiarPagina(currentPage - 1)" 
+            [disabled]="isFirst" 
+            class="btn btn-secondary">
+        Anterior
+    </button>
+
+    <span> Página {{ currentPage + 1 }} de {{ totalPages }} </span>
+
+    <button (click)="cambiarPagina(currentPage + 1)" 
+            [disabled]="isLast" 
+            class="btn btn-secondary">
+        Siguiente
+    </button>
+</div>
 </div>

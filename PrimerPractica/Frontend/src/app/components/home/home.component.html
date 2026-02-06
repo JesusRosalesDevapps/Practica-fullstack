@@ -1,6 +1,9 @@
 <div style="text-align: center; margin-top: 50px;">
     <h1>¡Bienvenido al Sistema!</h1>
     <p>Has iniciado sesión correctamente.</p>
-    <button routerLink="/customers">Ir a Clientes</button>
-    <button (click)="logout()">Cerrar Sesión</button>
+    <div class="menu-container">
+        <button routerLink="/customers" class="btn btn-primary" id="clientes">Ir a Clientes</button>
+        <button routerLink="/products" class="btn btn-primary" id="productos">Ir a productos</button>
+        <button (click)="logout()" class="btn btn-danger">Cerrar Sesión</button>
+    </div>
 </div>

@@ -10,7 +10,13 @@ import { CustomerService } from 'src/app/service/customer.service';
 export class CustomerListComponent implements OnInit {
 
   customers : Customer [] = [];
- 
+  
+  currentPage: number = 0;
+  pageSize: number = 5; 
+  totalPages: number = 0;
+  isFirst: boolean = false;
+  isLast: boolean = false;
+
   constructor (private customerService : CustomerService) { 
 
   }
@@ -19,13 +25,25 @@ export class CustomerListComponent implements OnInit {
     this.listCustomers();
   }
 
-  listCustomers(){
-      this.customerService.getCustomerList().subscribe(
-      data => {
-        this.customers = data;
-        console.log(this.customers);
-      }
+  listCustomers() {
+    this.customerService.getCustomerList(this.currentPage, this.pageSize).subscribe(
+      (data: any) => {
+        this.customers = data.content;
+        
+        this.totalPages = data.totalPages;
+        this.isFirst = data.first;
+        this.isLast = data.last;
+        
+        console.log("Página actual:", this.currentPage);
+        console.log("Datos recibidos:", this.customers);
+      },
+      (error) => console.error(error)
     );
+  }
+
+  cambiarPagina(nuevaPagina: number): void {
+    this.currentPage = nuevaPagina;
+    this.listCustomers(); 
   }
 
   deleteCustomer(id: number){

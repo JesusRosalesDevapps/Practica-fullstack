@@ -11,8 +11,8 @@ export class CustomerService {
   private api : string = 'http://localhost:8080/api/customers';
   constructor(private http : HttpClient) { }
 
-  getCustomerList(): Observable<Customer []> {
-    return this.http.get<Customer []>(this.api);
+  getCustomerList(page : number = 0, size : number = 5): Observable<any> {
+    return this.http.get<any>(`${this.api}?page=${page}&size=${size}`);
   }
 
   createCustomer(customer: Customer): Observable<Customer> {
