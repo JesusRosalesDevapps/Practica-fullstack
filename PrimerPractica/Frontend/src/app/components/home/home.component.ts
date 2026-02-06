@@ -8,23 +8,15 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  loginData = {
-    name: '',
-    password: ''
-  };
 
-  constructor(private router : Router) { }
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
   }
-  login(name: string, password: string){
-    this.loginData.name = name;
-    this.loginData.password = password;
-    if(this.loginData.name === 'Jesus' && this.loginData.password === 'Totonino'){
-      this.router.navigate(['/customers']);
-    } else {
-      alert('Credenciales incorrectas');
-    }
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
   }
-
 }

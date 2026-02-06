@@ -10,26 +10,31 @@
     </head>
     <body>
         <div class="wrapper">
-            <form method="post" action="">    
+            <form (ngSubmit)="register()">    
                 <h1>Register</h1>
                 <div class="input-box">
                     <label>Enter your username:</label>
-                    <input type="text" placeholder="Username" id="username" name="username" required>
+                    <input [(ngModel)]="name" type="text" placeholder="Username" id="username" name="username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
                     <label>Enter your Email:</label>
-                    <input type="email" placeholder="Email" id="email" name="email" required>
+                    <input [(ngModel)]="email" type="email" placeholder="Email" id="email" name="email">
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
                     <label>Enter your password:</label>
-                    <input type="password" placeholder="Password" id="password" name="password" required>
+                    <input [(ngModel)]="password" type="password" placeholder="Password" id="password" name="password">
                     <i class='bx bxs-lock-alt' ></i>
                 </div>
-                <button type="submit" class="btn" value="Register">Register</button>
+
+                <div *ngIf="errorMessage" style="color: red; text-align: center; margin-bottom: 10px;">
+                    {{ errorMessage }}
+                </div>
+
+                <button type="submit" class="btn">Register</button>
                 <div class="login-link">
-                <p>U have an account? <a routerLink=""> Login</a></p> 
+                <p>U have an account? <a routerLink="/login"> Login</a></p> 
                 </div>
             </form>
         </div>

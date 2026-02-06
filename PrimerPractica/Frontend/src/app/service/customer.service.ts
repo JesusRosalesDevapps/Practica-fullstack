@@ -26,4 +26,8 @@ export class CustomerService {
   getCustomerByName(name: string): Observable<Customer []> {
     return this.http.get<Customer []>(this.api+'/name/'+name);
   }
+
+  login(customer : any) : Observable<any> {
+    return this.http.post(this.api+'/login', customer);
+  }
 }
