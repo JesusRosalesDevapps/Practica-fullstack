@@ -12,6 +12,7 @@ export class CustomerAddComponent implements OnInit {
   id : number;
   name : string = '';
   email : string = '';
+  password : string = '';
 
   constructor(private customerService : CustomerService) { }
 
@@ -19,7 +20,7 @@ export class CustomerAddComponent implements OnInit {
   }
 
   addCustomer(){
-    let customer = new Customer(this.id, this.name, this.email);
+    let customer = new Customer(this.id, this.name, this.email, this.password);
     console.log(customer);
     this.customerService.createCustomer(customer).subscribe(
       res => console.log(res)

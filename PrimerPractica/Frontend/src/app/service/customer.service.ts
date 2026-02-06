@@ -22,4 +22,8 @@ export class CustomerService {
   deleteCustomerById(id: number): Observable<any> {
     return this.http.delete(this.api+'/'+id);
   }
+
+  getCustomerByName(name: string): Observable<Customer []> {
+    return this.http.get<Customer []>(this.api+'/name/'+name);
+  }
 }
