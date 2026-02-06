@@ -1,43 +1,51 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/customer';
 import { CustomerService } from 'src/app/service/customer.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-add',
-  templateUrl: './customer-add.component.html',
-  styleUrls: ['./customer-add.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class CustomerAddComponent implements OnInit {
-
-  id : number;
-  name : string = '';
-  email : string = '';
-  password : string = '';
+export class RegisterComponent implements OnInit {
+  id: number; 
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  
   errorMessage: string = '';
-  constructor(private customerService : CustomerService, private router: Router) { }
+
+  constructor(
+    private customerService: CustomerService,
+    private router: Router 
+  ) { }
 
   ngOnInit(): void {
   }
 
-  addCustomer(){
+  register() {
     let customer = new Customer(this.id, this.name, this.email, this.password);
     this.errorMessage = '';
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
+    
+    //validar campos
     if (!this.name.trim() || !this.email.trim() || !this.password.trim()) {
       alert("Por favor, llena todos los campos obligatorios.");
       return; 
     }
-
+    //validar formato de email
     if (!emailPattern.test(this.email)) {
       this.errorMessage = "📧 El formato del correo es inválido.";
       return;
     }
-    console.log(customer);
+    
     this.customerService.createCustomer(customer).subscribe({
       next: (res) => {
-        alert('¡Registro exitoso!'); 
+        console.log('Cliente creado:', res);
+        alert('¡Registro exitoso! Por favor inicia sesión.');
+        
+        this.router.navigate(['/login']); 
       },
       error: (err) => {
         console.error(err);

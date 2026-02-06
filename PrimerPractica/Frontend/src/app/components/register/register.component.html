@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Register</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="register.component.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <div class="wrapper">
+            <form (ngSubmit)="register()">    
+                <h1>Register</h1>
+                <div class="input-box">
+                    <label>Enter your username:</label>
+                    <input [(ngModel)]="name" type="text" placeholder="Username" id="username" name="username">
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <label>Enter your Email:</label>
+                    <input [(ngModel)]="email" type="email" placeholder="Email" id="email" name="email">
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <label>Enter your password:</label>
+                    <input [(ngModel)]="password" type="password" placeholder="Password" id="password" name="password">
+                    <i class='bx bxs-lock-alt' ></i>
+                </div>
+
+                <div *ngIf="errorMessage" style="color: red; text-align: center; margin-bottom: 10px;">
+                    {{ errorMessage }}
+                </div>
+
+                <button type="submit" class="btn">Register</button>
+                <div class="login-link">
+                <p>U have an account? <a routerLink="/login"> Login</a></p> 
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
