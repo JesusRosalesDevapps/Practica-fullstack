@@ -1,6 +1,3 @@
-<head>
-    <link rel="stylesheet" href="customer-list.component.css">
-</head>
 <div class="container">
     <h2>Listado de cuentas</h2>
     <a class="btn btn-primary" routerLink="/customers/add">crear customer</a>
@@ -27,18 +24,18 @@
     </table>
 
     <div class="pagination-controls">
-    <button (click)="cambiarPagina(currentPage - 1)" 
-            [disabled]="isFirst" 
-            class="btn btn-secondary">
-        Anterior
-    </button>
+        <button (click)="cambiarPagina(currentPage - 1)" 
+                [disabled]="isFirst" 
+                class="btn btn-secondary">
+            Anterior
+        </button>
 
-    <span> Página {{ currentPage + 1 }} de {{ totalPages }} </span>
+        <span> Página {{ currentPage + 1 }} de {{ totalPages }} </span>
 
-    <button (click)="cambiarPagina(currentPage + 1)" 
-            [disabled]="isLast" 
-            class="btn btn-secondary">
-        Siguiente
-    </button>
-</div>
+        <button (click)="cambiarPagina(currentPage + 1)" 
+                [disabled]="isLast" 
+                class="btn btn-secondary">
+            Siguiente
+        </button>
+    </div>
 </div>

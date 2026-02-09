@@ -15,6 +15,7 @@ export class CustomerAddComponent implements OnInit {
   email : string = '';
   password : string = '';
   errorMessage: string = '';
+  
   constructor(private customerService : CustomerService, private router: Router) { }
 
   ngOnInit(): void {
