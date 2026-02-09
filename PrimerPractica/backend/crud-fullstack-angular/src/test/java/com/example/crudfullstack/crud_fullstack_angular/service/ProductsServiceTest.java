@@ -17,12 +17,10 @@ import java.util.Arrays;
 import java.util.List;
 import com.example.crudfullstack.crud_fullstack_angular.entity.Products;
 import com.example.crudfullstack.crud_fullstack_angular.repository.ProductsRepository;
-import com.example.crudfullstack.crud_fullstack_angular.service.ProductsServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class) // Habilita Mockito [cite: 51]
 class ProductsServiceTest {
