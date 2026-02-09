@@ -1,1 +1,43 @@
-<p>products-add works!</p>
+<div class="container mt-4">
+    <h2>{{ isEditMode ? 'Editar Producto' : 'Crear Producto' }}</h2>
+    <hr>
+    <form (ngSubmit)="addProduct()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input [(ngModel)]="name" type="text" class="form-control" id="name" name="name"  >
+    </div>   
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Categoria</label>
+        <select [(ngModel)]="category" type="text" class="form-control" id="category" name="category" >
+
+            <option value="" disabled selected>Selecciona una categoría</option>
+            <option value="Alimentos">Alimentos</option>
+            <option value="Electronica">Electronica</option>
+            <option value="Muebles">Muebles</option>
+            <option value="Ropa">Ropa</option>
+        
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="password" class="form-label">Precio</label>
+        <input [(ngModel)]="price" type="number" class="form-control" id="price" name="price" >
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Stock</label>
+        <input [(ngModel)]="stock" type="number" class="form-control" id="stock" name="stock" >
+    </div>
+    <div class="mb-3 form-check">
+        <input [(ngModel)]="available" type="checkbox" class="form-check-input" id="available" name="available">
+        <label class="form-check-label" for="available">Disponible</label>
+    </div>
+    <div *ngIf="errorMessage" style="color: red; text-align: center; margin-bottom: 10px;">
+        {{ errorMessage }}
+    </div>
+    
+    <button type="submit" [ngClass]="isEditMode ? 'btn btn-warning' : 'btn btn-primary'">
+                {{ isEditMode ? 'Modificar' : 'Crear' }}
+    </button>
+    <button routerLink="/products" class="btn btn-secondary">Regresar</button>
+    </form>
+</div>

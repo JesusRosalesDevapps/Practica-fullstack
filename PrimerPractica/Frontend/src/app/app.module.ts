@@ -14,7 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProductsAddComponent } from './components/products-add/products-add.component';
-
+import { CommonModule } from '@angular/common';
 
   const routes : Routes = [
     {path : '', redirectTo: '/login', pathMatch: 'full' }, //http:localhost:4200/
@@ -28,7 +28,8 @@ import { ProductsAddComponent } from './components/products-add/products-add.com
     
     {path : 'products', component : ProductsListComponent, canActivate: [AuthGuard]}, //http:localhost:4200/products
     {path : 'products/add', component : ProductsAddComponent, canActivate: [AuthGuard]}, //http:localhost:4200/products/add
-    {path : 'products/delete/:id', component : ProductsListComponent, canActivate: [AuthGuard]} //http:localhost:4200/products/delete/1
+    {path : 'products/delete/:id', component : ProductsListComponent, canActivate: [AuthGuard]}, //http:localhost:4200/products/delete/1
+    {path : 'products/update/:id', component : ProductsAddComponent, canActivate: [AuthGuard]} //http:localhost:4200/products/update/1
 
   ];
 
@@ -41,13 +42,15 @@ import { ProductsAddComponent } from './components/products-add/products-add.com
     ProductsListComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProductsAddComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
