@@ -1,7 +1,5 @@
 package com.example.crudfullstack.crud_fullstack_angular.controller;
 
-import java.util.List;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
