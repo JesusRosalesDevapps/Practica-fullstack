@@ -1,5 +1,7 @@
 package com.example.crudfullstack.crud_fullstack_angular.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.crudfullstack.crud_fullstack_angular.Exception.ResourceNotFoundException;
@@ -7,11 +9,11 @@ import com.example.crudfullstack.crud_fullstack_angular.entity.Products;
 import com.example.crudfullstack.crud_fullstack_angular.repository.ProductsRepository;
 
 @Service
-public class ProductsServiceImp implements ProductsService {
+public class ProductsServiceImpl implements ProductsService {
 
     private final ProductsRepository productsRepository;
 
-    public ProductsServiceImp(ProductsRepository productsRepository) {
+    public ProductsServiceImpl(ProductsRepository productsRepository) {
         this.productsRepository = productsRepository;
     }
 
@@ -21,8 +23,8 @@ public class ProductsServiceImp implements ProductsService {
     }
 
     @Override
-    public java.util.List<Products> findAll() {
-        return productsRepository.findAll();
+    public Page<Products> findAll(Pageable pageable) {
+        return productsRepository.findAll(pageable);
     }
 
     @Override

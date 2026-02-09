@@ -4,7 +4,6 @@ import com.example.crudfullstack.crud_fullstack_angular.entity.Customer;
 import com.example.crudfullstack.crud_fullstack_angular.repository.CustomerRepository;
 import com.example.crudfullstack.crud_fullstack_angular.service.CustomerService;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;

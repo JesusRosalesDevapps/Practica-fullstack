@@ -1,7 +1,5 @@
 package com.example.crudfullstack.crud_fullstack_angular.controller;
 
-import java.util.List;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,13 +23,10 @@ import org.springframework.data.domain.Pageable;
 @RequestMapping("/api/products")
 @CrossOrigin(origins="http://localhost:4200")
 public class ProductsController {
-
-    private final ProductsRepository productsRepository;
     private final ProductsService productsService;
 
     public ProductsController(ProductsService productsService, ProductsRepository productsRepository) {
         this.productsService = productsService;
-        this.productsRepository = productsRepository;
     }
 
     //http://localhost:8080/api/products
@@ -40,14 +35,14 @@ public class ProductsController {
         return productsService.save(product);
     }
 
-    //http://localhost:8080/api/products
+    // http://localhost:8080/api/products
     @GetMapping
     public Page<Products> findAll(
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "5") int size) 
-        {
+        @RequestParam(defaultValue = "5") int size) {
+       
         Pageable pageable = PageRequest.of(page, size);
-        return productsRepository.findAll(pageable);
+        return productsService.findAll(pageable); 
     }
 
     //http://localhost:8080/api/products/1
