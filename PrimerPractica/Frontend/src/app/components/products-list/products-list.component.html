@@ -19,9 +19,9 @@
         <tr *ngFor = " let c of products ">
         <th scope="row">{{ c.id }}</th>
         <td [class.tachado]="!c.available">{{ c.name }}</td>
-        <td>{{ c.category }}</td>
-        <td>{{ c.price }}</td>
-        <td>{{ c.stock }}</td>
+        <td [class.tachado]="!c.available">{{ c.category }}</td>
+        <td [class.tachado]="!c.available">{{ c.price }}</td>
+        <td [class.tachado]="!c.available">{{ c.stock }}</td>
         <td>
             <input type="checkbox" [checked]="c.available" (change)="toggleAvailable(c, $event)" style="cursor:pointer;" >
         </td>
