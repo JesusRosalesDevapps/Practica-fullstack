@@ -3,17 +3,17 @@
             <form (ngSubmit)="register()">    
                 <h1>Register</h1>
                 <div class="input-box">
-                    <label>Enter your username:</label>
+                    <label for="username">Enter your username:</label>
                     <input [(ngModel)]="name" type="text" placeholder="Username" id="username" name="username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <label>Enter your Email:</label>
+                    <label for="email">Enter your Email:</label>
                     <input [(ngModel)]="email" type="email" placeholder="Email" id="email" name="email">
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <label>Enter your password:</label>
+                    <label for="password">Enter your password:</label>
                     <input [(ngModel)]="password" type="password" placeholder="Password" id="password" name="password">
                     <i class='bx bxs-lock-alt' ></i>
                 </div>

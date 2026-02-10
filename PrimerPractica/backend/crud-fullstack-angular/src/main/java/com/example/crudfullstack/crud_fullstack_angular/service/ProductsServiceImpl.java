@@ -29,12 +29,8 @@ public class ProductsServiceImpl implements ProductsService {
 
     @Override
     public Products findById(Integer id) {
-         Products product = productsRepository.findById(id).orElseThrow(
-            () -> {
-                throw new ResourceNotFoundException("Product not found with id: " + id ); 
-            }
-        );
-        return product;
+    return productsRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
 
     @Override
