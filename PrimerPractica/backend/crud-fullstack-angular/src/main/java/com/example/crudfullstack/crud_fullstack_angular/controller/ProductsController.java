@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.crudfullstack.crud_fullstack_angular.entity.Products;
-import com.example.crudfullstack.crud_fullstack_angular.repository.ProductsRepository;
 import com.example.crudfullstack.crud_fullstack_angular.service.ProductsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +24,7 @@ import org.springframework.data.domain.Pageable;
 public class ProductsController {
     private final ProductsService productsService;
 
-    public ProductsController(ProductsService productsService, ProductsRepository productsRepository) {
+    public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
 
