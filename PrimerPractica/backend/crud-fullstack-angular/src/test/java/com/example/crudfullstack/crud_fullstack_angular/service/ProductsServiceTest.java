@@ -88,4 +88,32 @@ class ProductsServiceTest {
         productsService.deleteById(idToDelete);
         verify(productsRepository, times(1)).deleteById(idToDelete);
     }
+
+    @Test
+    void testUpdate() {
+        //Creamos el producto que queremos actualizar
+        Products product = new Products();
+        BigDecimal precio = BigDecimal.valueOf(1500.99);
+        
+        product.setId(1);
+        product.setName("Tocador");
+        product.setCategory(Products.categoryType.Muebles); 
+        product.setPrice(precio);
+        product.setStock(1);
+        product.setAvailable(true);
+
+        //Le decimos al Mock que cuando le llegue un 'save', devuelva ese mismo producto
+        when(productsRepository.save(any(Products.class))).thenReturn(product);
+
+        //Llamamos al método que queremos probar
+        Products resultado = productsService.update(product);
+
+        // Aseguramos que el resultado no sea nulo
+        assertNotNull(resultado);
+        // Aseguramos que el nombre sea el correcto
+        assertEquals("Tocador", resultado.getName());
+        
+        //Verificamos que el servicio LLAMÓ al método save del repositorio 1 vez
+        verify(productsRepository, times(1)).save(product);
+    }
 }

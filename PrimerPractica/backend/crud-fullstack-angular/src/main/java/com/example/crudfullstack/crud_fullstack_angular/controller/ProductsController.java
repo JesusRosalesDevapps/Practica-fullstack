@@ -58,8 +58,10 @@ public class ProductsController {
 
     //http://localhost:8080/api/products
     @PutMapping("/{id}")
-    public Products updateProducts(@RequestBody Products product) {
-        Products productDb = productsService.findById(product.getId());
+    public Products updateProducts(@PathVariable Integer id, @RequestBody Products product) {
+        product.setId(id);
+        
+        Products productDb = productsService.findById(id);
         productDb.setName(product.getName());
         productDb.setCategory(product.getCategory());
         productDb.setPrice(product.getPrice());
@@ -75,7 +77,7 @@ public class ProductsController {
         return productsService.update(productDb);
     }
 
-    @PatchMapping("/{id}/false")
+    @PatchMapping("/{id}/deactivate")
     public Products deactivateProduct (@PathVariable Integer id) {
         Products productDb = productsService.findById(id);
         productDb.setAvailable(false);
