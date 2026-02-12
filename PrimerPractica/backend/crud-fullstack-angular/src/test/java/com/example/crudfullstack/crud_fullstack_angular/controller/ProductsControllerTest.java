@@ -102,4 +102,54 @@ class ProductsControllerTest {
         mvc.perform(delete("/api/products/{id}", id))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void testActivateProduct() throws Exception{
+        //Creamos un producto
+        Products product = new Products();
+        BigDecimal precio = BigDecimal.valueOf(1500.99);
+        product.setId(1);
+        product.setName("Tocador");
+        product.setCategory(Products.categoryType.Muebles); 
+        product.setPrice(precio);
+        product.setStock(1);
+        product.setAvailable(false);
+
+        //devuelve el producto que creamos
+        when(productsService.findById(1)).thenReturn(product);
+        //lo guardamos
+        when(productsService.update(any(Products.class))).thenReturn(product);
+
+        //prbamos el activate
+        mvc.perform(patch("/api/products/1/activate")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.available").value(true));
+
+    }
+
+    @Test
+    void testDeactivateProduct() throws Exception{
+        //Creamos un producto
+        Products product = new Products();
+        BigDecimal precio = BigDecimal.valueOf(1500.99);
+        product.setId(1);
+        product.setName("Tocador");
+        product.setCategory(Products.categoryType.Muebles); 
+        product.setPrice(precio);
+        product.setStock(1);
+        product.setAvailable(true);
+
+        //devuelve el producto que creamos
+        when(productsService.findById(1)).thenReturn(product);
+        //lo guardamos
+        when(productsService.update(any(Products.class))).thenReturn(product);
+
+        //prbamos el activate
+        mvc.perform(patch("/api/products/1/deactivate")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.available").value(false));
+
+    }
 }

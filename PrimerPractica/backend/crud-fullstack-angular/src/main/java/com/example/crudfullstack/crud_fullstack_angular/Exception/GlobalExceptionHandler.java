@@ -17,4 +17,14 @@ public class GlobalExceptionHandler {
         ErrorDetails error = new ErrorDetails(LocalDateTime.now(),ex.getMessage(),webRequest.getDescription(false),"NOT_FOUND");
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleGlobalException(Exception exception, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(
+            java.time.LocalDateTime.now(), 
+            exception.getMessage(), 
+            request.getDescription(false), 
+            "INTERNAL_SERVER_ERROR"
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
