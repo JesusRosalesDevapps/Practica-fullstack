@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/products';
 import { ProductsService } from 'src/app/service/products.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products-add',
@@ -76,14 +75,12 @@ export class ProductsAddComponent implements OnInit {
           error: (err) => {
             console.error(err);
     
-            // MANEJO DE ERRORES
-            if (err.status === 409) {
-              this.errorMessage = `⛔ ${err.error}`; 
-            } else if (err.status === 400) {
-              this.errorMessage = `⚠️ ${err.error}`;
+            if (err?.status === 409 || err?.status === 400) {
+              this.errorMessage = `${err.error}`;
             } else {
-              this.errorMessage = '❌ Error de conexión con el servidor.';
+              this.errorMessage = 'Error de conexión con el servidor.';
             }
+
           }
         });
     }

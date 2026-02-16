@@ -1,31 +1,41 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HomeComponent } from './home.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule, 
-        RouterTestingModule,
-      ],
-      declarations: [ HomeComponent ]
-    })
-    .compileComponents();
-  });
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-  beforeEach(() => {
+    await TestBed.configureTestingModule({
+      declarations: [HomeComponent],
+      providers: [
+        { provide: Router, useValue: routerSpy }
+      ]
+    }).compileComponents();
+
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debe crearse el componente', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('ngOnInit no debe lanzar errores', () => {
+    expect(() => component.ngOnInit()).not.toThrow();
+  });
+
+  it('logout debe eliminar currentUser del localStorage y navegar a /login', () => {
+    spyOn(localStorage, 'removeItem');
+
+    component.logout();
+
+    expect(localStorage.removeItem).toHaveBeenCalledWith('currentUser');
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   });
 });
